@@ -1,0 +1,58 @@
+{
+	"friends": [
+        {
+            "firstName":"Brandy",
+            "lastName":"Brooks",
+            "nickName":"The Golden Bear",
+            "dateOfBirth":"1988-04-23T18:25:43.511Z",
+            "profilePictureUrl": "brandy.jpg",
+            "isFriend":false,
+            "majorsWon":5
+        },
+        {
+            "firstName":"Donald",
+            "lastName":"Nichols",
+            "nickName":"The Black Knight",
+            "dateOfBirth":"1975-04-23T18:25:43.511Z",
+            "profilePictureUrl": "donald.jpg",
+            "isFriend":false,
+            "majorsWon":2
+        },
+        {
+            "firstName":"Andrea",
+            "lastName":"Brady",
+            "nickName":"Firecracker",
+            "dateOfBirth":"1976-04-23T18:25:43.511Z",
+            "profilePictureUrl": "andrea.jpg",
+            "isFriend":false,
+            "majorsWon":1
+        },
+        {
+            "firstName":"Jill",
+            "lastName":"Smith",
+            "nickName":"The Hawk",
+            "dateOfBirth":"1990-04-23T18:25:43.511Z",
+            "profilePictureUrl": "jill.jpg",
+            "isFriend":true,
+            "majorsWon":0
+        },
+        {
+            "firstName":"Kimberly",
+            "lastName":"Olsen",
+            "nickName":"Beagle",
+            "dateOfBirth":"1970-04-23T18:25:43.511Z",
+            "profilePictureUrl": "kimberly.jpg",
+            "isFriend":true,
+            "majorsWon":5
+        },
+        {
+            "firstName":"Courtney",
+            "lastName":"White",
+            "nickName":"Bam Bam",
+            "dateOfBirth":"2005-04-23T18:25:43.511Z",
+            "profilePictureUrl": "courtney.jpg",
+            "isFriend":true,
+            "majorsWon":0
+        }
+	]
+}

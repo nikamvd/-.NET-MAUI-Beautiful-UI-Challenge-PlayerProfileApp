@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="BaseLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Lato" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource Color_SecondaryGrey}" />
+    </Style>
+
+    <!--Friends List Styles-->
+    <Style x:Key="Label_NickName" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10,-10,0,0" />
+    </Style>
+    <Style x:Key="Label_Name" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10,10,0,0" />
+        <Setter Property="TextColor" Value="{StaticResource Color_ElementGrey}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    <Style x:Key="Label_Header" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Padding" Value="10" />
+    </Style>
+    <Style x:Key="BoxView_Separator" TargetType="BoxView">
+        <Setter Property="Color" Value="{StaticResource Color_LightGrey}" />
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+    <Style x:Key="SearchBar_Search" TargetType="SearchBar">
+        <Setter Property="PlaceholderColor" Value="{StaticResource Color_SecondaryGrey}" />
+        <Setter Property="TextColor" Value="{StaticResource Color_SecondaryGrey}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="FontFamily" Value="Lato" />
+        <Setter Property="FontSize" Value="13" />
+    </Style>
+    <Style x:Key="CachedImage_Profile" TargetType="toolkit:AvatarView">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="WidthRequest" Value="80" />
+        <Setter Property="CornerRadius" Value="40" />
+    </Style>
+    <Style x:Key="CachedImage_ProfileView" TargetType="toolkit:AvatarView">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="200" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="CornerRadius" Value="100" />
+    </Style>
+
+    <!--Profile View Styles-->
+    <Style x:Key="Label_ProfileViewName" TargetType="Label">
+        <Setter Property="FontFamily" Value="Oswald" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="TextColor" Value="{StaticResource Color_ElementGrey}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="Label_ProfileMessage" TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource Color_ElementGrey}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,15,0,0" />
+    </Style>
+    <Style x:Key="Label_ProfileViewNickName" TargetType="Label" BasedOn="{StaticResource Label_NickName}">
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+    </Style>
+    <Style x:Key="Label_ProfileViewAge" TargetType="Label" BasedOn="{StaticResource Label_ProfileViewNickName}">
+        <Setter Property="Margin" Value="0,1,0,0" />
+    </Style>
+</ResourceDictionary>

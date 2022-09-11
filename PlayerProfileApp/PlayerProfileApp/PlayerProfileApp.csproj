@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>PlayerProfileApp</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>PlayerProfileApp</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.vinayak.PlayerProfileApp</ApplicationId>
+		<ApplicationIdGuid>0CB3CE3E-0289-4DE6-83C1-C39DA1F3D0DC</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#FFFFFF" BaseSize="300,300" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Pages\" />
+	  <None Remove="Base\" />
+	  <None Remove="Constants\" />
+	  <None Remove="Models\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Services\" />
+	  <None Remove="Newtonsoft.Json" />
+	  <None Remove="Xamarin.FFImageLoading" />
+	  <None Remove="Xamarin.FFImageLoading.Transformations" />
+	  <None Remove="Xamarin.FFImageLoading.Forms" />
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Resources\Splash\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Pages\" />
+	  <Folder Include="Base\" />
+	  <Folder Include="Constants\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Resources\Splash\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Pages\FriendsListPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ProfileViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\FriendsStyles.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DesktopPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\GolfMateResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>GolfMateResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\GolfMateResources.Designer.cs">
+	    <DependentUpon>GolfMateResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	</ItemGroup>
+</Project>

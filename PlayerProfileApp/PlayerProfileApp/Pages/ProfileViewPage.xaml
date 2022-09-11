@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseGolfMatePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:PlayerProfileApp.Base"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="true"
+    x:Class="PlayerProfileApp.Pages.ProfileViewPage">
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0">
+            <Image Source="profile_background.png" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+            <Image Source="lower_background.png" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 1, 1, 0.5" />
+
+            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Margin="25,25,25,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout AutomationId="Back" AutomationProperties.Name="Back" HorizontalOptions="StartAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="chevron_back.png" Aspect="AspectFit" HorizontalOptions="Start" />
+                </StackLayout>
+                <Image Grid.Column="1" Source="more_icon.png" Aspect="AspectFit" HorizontalOptions="End" />
+            </Grid>
+
+            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Margin="25,25,25,0" InputTransparent="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <toolkit:AvatarView Grid.Row="1" Grid.Column="1" x:Name="ProfilePicture"
+                                    ImageSource="{Binding SelectedPlayer.ProfilePictureUrl}"
+                                    Style="{StaticResource CachedImage_ProfileView}"
+                                    WidthRequest="200" HeightRequest="200" CornerRadius="100" />
+
+                <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Label Text="{Binding SelectedPlayer.Name}" Style="{StaticResource Label_ProfileViewName}" />
+                    <Label Text="{Binding SelectedPlayer.NickName}" Style="{StaticResource Label_ProfileViewNickName}" />
+                    <Label Text="{Binding SelectedPlayer.Age}" Style="{StaticResource Label_ProfileViewAge}" />
+                    <Label Text="{Binding ProfileMessage}" Style="{StaticResource Label_ProfileMessage}" />
+                </StackLayout>
+                <Image Grid.Row="5" Grid.Column="1" Source="cards.png" Aspect="AspectFit" />
+            </Grid>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</base:BaseGolfMatePage>

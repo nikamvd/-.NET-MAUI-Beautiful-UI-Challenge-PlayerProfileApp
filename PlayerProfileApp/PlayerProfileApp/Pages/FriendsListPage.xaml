@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseGolfMatePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:PlayerProfileApp.Base"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:resources="clr-namespace:PlayerProfileApp.Resources"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="true"
+    Title="{x:Static resources:GolfMateResources.FriendsListTitle}"
+    x:Class="PlayerProfileApp.Pages.FriendsListPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20">
+            <SearchBar Placeholder="{x:Static resources:GolfMateResources.SearchPlaceholderText}" Style="{StaticResource SearchBar_Search}" />
+            <CollectionView ItemsSource="{Binding Players}" IsGrouped="true" SelectionMode="Single" AutomationId="Players" AutomationProperties.Name="Players"
+                            SelectedItem="{Binding SelectedPlayer}"
+                            SelectionChangedCommand="{Binding FriendSelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding GroupName}" Style="{StaticResource Label_Header}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5" VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <toolkit:AvatarView Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource CachedImage_Profile}"
+                            ImageSource="{Binding ProfilePictureUrl}" WidthRequest="80" HeightRequest="80" CornerRadius="40" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource Label_Name}" />
+                            <Image Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Source="forward_chevron.png" Margin="0,0,15,0"/>
+
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding NickName}" Style="{StaticResource Label_NickName}" />
+                        
+                            <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BoxView_Separator}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseGolfMatePage>
