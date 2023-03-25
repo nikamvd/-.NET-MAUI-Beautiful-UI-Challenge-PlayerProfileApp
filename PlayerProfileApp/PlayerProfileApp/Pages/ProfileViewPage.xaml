@@ -7,59 +7,94 @@
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     ios:Page.UseSafeArea="true"
     x:Class="PlayerProfileApp.Pages.ProfileViewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0">
-            <Image Source="profile_background.png" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
-            <Image Source="lower_background.png" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 1, 1, 0.5" />
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Margin="25,25,25,0">
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="#F1791C">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <StackLayout AutomationId="Back" AutomationProperties.Name="Back" HorizontalOptions="StartAndExpand">
+                <StackLayout Grid.Row="1" Grid.Column="1" AutomationId="Back" AutomationProperties.Name="Back" HorizontalOptions="StartAndExpand">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
                     <Image Source="chevron_back.png" Aspect="AspectFit" HorizontalOptions="Start" />
                 </StackLayout>
-                <Image Grid.Column="1" Source="more_icon.png" Aspect="AspectFit" HorizontalOptions="End" />
+                <Image Grid.Row="1" Grid.Column="2" Source="more_icon.png" Aspect="AspectFit" HorizontalOptions="End" />
             </Grid>
 
-            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Margin="25,25,25,0" InputTransparent="True">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <toolkit:AvatarView Grid.Row="1" Grid.Column="1" x:Name="ProfilePicture"
+            <Frame Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="0" BackgroundColor="#F1791C" BorderColor="#F1791C">
+                <toolkit:AvatarView x:Name="ProfilePicture"
                                     ImageSource="{Binding SelectedPlayer.ProfilePictureUrl}"
                                     Style="{StaticResource CachedImage_ProfileView}"
                                     WidthRequest="200" HeightRequest="200" CornerRadius="100" />
 
-                <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
-                    <Label Text="{Binding SelectedPlayer.Name}" Style="{StaticResource Label_ProfileViewName}" />
-                    <Label Text="{Binding SelectedPlayer.NickName}" Style="{StaticResource Label_ProfileViewNickName}" />
-                    <Label Text="{Binding SelectedPlayer.Age}" Style="{StaticResource Label_ProfileViewAge}" />
-                    <Label Text="{Binding ProfileMessage}" Style="{StaticResource Label_ProfileMessage}" />
-                </StackLayout>
-                <Image Grid.Row="5" Grid.Column="1" Source="cards.png" Aspect="AspectFit" />
-            </Grid>
+            </Frame>
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                <Label Text="{Binding SelectedPlayer.Name}" Style="{StaticResource Label_ProfileViewName}" />
+                <Label Text="{Binding SelectedPlayer.NickName}" Style="{StaticResource Label_ProfileViewNickName}" />
+                <Label Text="{Binding SelectedPlayer.Age}" Style="{StaticResource Label_ProfileViewAge}" />
+            </StackLayout>
 
-        </AbsoluteLayout>
+            <Frame Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="10"
+                       BackgroundColor="#FCE4D1" Margin="15,0,15,0" HorizontalOptions="Center">
+                <Frame.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding IsDesktop}" Value="true">
+                        <Setter Property="Margin" Value="100,0,100,0" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label Text="{Binding ProfileMessage}" Style="{StaticResource Label_ProfileMessage}" Margin="0,-5,0,0">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsDesktop}" Value="true">
+                            <Setter Property="FontSize" Value="20" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </Frame>
+            <CollectionView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Players}" SelectionMode="None"
+                                ItemsLayout="HorizontalList" IsVisible="{Binding IsDesktop, Converter={StaticResource InvertedBoolConverter}}">
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Label Text="Friends" Style="{StaticResource Label_Header}" />
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <toolkit:AvatarView Style="{StaticResource CachedImage_Profile}"
+                            ImageSource="{Binding ProfilePictureUrl}" WidthRequest="80" HeightRequest="80" CornerRadius="40" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </base:BaseGolfMatePage>

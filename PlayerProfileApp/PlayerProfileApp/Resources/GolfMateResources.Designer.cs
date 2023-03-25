@@ -67,7 +67,9 @@ namespace PlayerProfileApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can play recorded Virtual Golf rounds with {0} in our Performance Studio (PS). More Friends functionalities will be available soon..
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, erat iisque per cu, putant latine conceptam te usu. Laudem labitur eleifend id vis, ut illud populo vocent nec. Ad usu nullam tamquam minimum, in eos clita salutatus. Mei nobis iisque ullamcorper ne, falli civibus ius ex. Ex solum doming ius, vim noluisse pericula ei, pro probo audire perpetua et. Qui an mundi discere, ea dolore aliquip singulis duo, cu nonumy possit vis.
+        ///
+        ///An wisi debet facilisi nam, wisi veri ipsum ea sit. Et utamur voluptatum his. Ex sed appareat vulputate adol [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ProfileMessage {
             get {

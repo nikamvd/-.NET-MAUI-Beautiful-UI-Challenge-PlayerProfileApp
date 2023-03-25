@@ -17,7 +17,7 @@ namespace PlayerProfileApp.ViewModels
         {
             ProfileViewPage profileViewPage = new ProfileViewPage()
             {
-                BindingContext = new ProfileViewViewModel(e.TappedPlayer)
+                BindingContext = new ProfileViewViewModel(e.TappedPlayer, _friendsListViewModel.Friends)
             };
             CurrentProfileView = profileViewPage;
         }

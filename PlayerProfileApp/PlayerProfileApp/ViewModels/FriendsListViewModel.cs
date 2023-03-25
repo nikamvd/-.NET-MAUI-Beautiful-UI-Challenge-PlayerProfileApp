@@ -20,6 +20,7 @@ namespace PlayerProfileApp.ViewModels
 
     public class FriendsListViewModel : ExtendedBindableObject, ILazyNavigator, IMonitorAppearance
     {
+        public List<Friend> Friends;
         private readonly IFriendsService _friendsService;
         public FriendsListViewModel(IFriendsService friendsService)
         {
@@ -54,7 +55,7 @@ namespace PlayerProfileApp.ViewModels
             {
                 ProfileViewPage profileViewPage = new ProfileViewPage()
                 {
-                    BindingContext = new ProfileViewViewModel(clonedPlayer)
+                    BindingContext = new ProfileViewViewModel(clonedPlayer, Friends)
                 };
                 await Navigation.PushAsync(profileViewPage, false);
             }
@@ -74,11 +75,14 @@ namespace PlayerProfileApp.ViewModels
 
             var playersList = new List<PlayerGroup>();
             List<Friend> friends = players.Where(player => player.IsFriend).ToList();
+            Friends = new List<Friend>();
+            Friends.AddRange(friends);
             PlayerGroup friendsGroup = new PlayerGroup("Friends", friends);
             playersList.Add(friendsGroup);
 
             List<Friend> recentPlayers = players.Where(player => !player.IsFriend).ToList();
-            PlayerGroup recentlyPlayedGroup = new PlayerGroup("Recently played", recentPlayers);
+            Friends.AddRange(recentPlayers);
+            PlayerGroup recentlyPlayedGroup = new PlayerGroup("Acquaintances", recentPlayers);
             playersList.Add(recentlyPlayedGroup);
             Players = playersList;
 

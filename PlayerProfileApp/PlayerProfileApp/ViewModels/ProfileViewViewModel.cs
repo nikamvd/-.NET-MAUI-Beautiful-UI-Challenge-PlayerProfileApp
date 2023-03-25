@@ -3,15 +3,24 @@ using PlayerProfileApp.Base;
 using PlayerProfileApp.Models;
 using PlayerProfileApp.Resources;
 using System.Windows.Input;
+using PlayerProfileApp.Constants;
 
 namespace PlayerProfileApp.ViewModels
 {
     public class ProfileViewViewModel : ExtendedBindableObject, ILazyNavigator
     {
-        public ProfileViewViewModel(Friend selectedPlayer)
+        public ProfileViewViewModel(Friend selectedPlayer, List<Friend> players)
         {
+            Players = players;
             SelectedPlayer = selectedPlayer;
             BackCommand = new Command(async () => await NavigateBack());
+        }
+
+        private List<Friend> _players;
+        public List<Friend> Players
+        {
+            get => _players;
+            set { SetProperty(ref _players, value); }
         }
 
         private Friend _selectedPlayer;
@@ -26,6 +35,14 @@ namespace PlayerProfileApp.ViewModels
             get
             {
                 return string.Format(GolfMateResources.ProfileMessage, SelectedPlayer.FirstName);
+            }
+        }
+
+        public bool IsDesktop
+        {
+            get
+            {
+                return Config.Desktop;
             }
         }
 
