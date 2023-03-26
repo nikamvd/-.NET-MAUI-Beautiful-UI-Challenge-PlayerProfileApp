@@ -24,8 +24,8 @@ public partial class App : Application
             var friendsListPage = new FriendsListPage() { BindingContext = friendsListViewModel };
             var navPage = new NavigationPage(friendsListPage)
             {
-                BarBackgroundColor = Color.FromRgba("#F1791C"),
-                BackgroundColor = Color.FromRgba("#F1791C"),
+                BarBackgroundColor = Color.FromRgba("#512BD4"),
+                BackgroundColor = Color.FromRgba("#512BD4"),
                 BarTextColor = Color.FromRgba("#FFFFFF")
             };
             MainPage = navPage;

@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="#F1791C">
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="#512BD4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -51,7 +51,7 @@
                 <Image Grid.Row="1" Grid.Column="2" Source="more_icon.png" Aspect="AspectFit" HorizontalOptions="End" />
             </Grid>
 
-            <Frame Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="0" BackgroundColor="#F1791C" BorderColor="#F1791C">
+            <Frame Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="0" BackgroundColor="#512BD4" BorderColor="#512BD4">
                 <toolkit:AvatarView x:Name="ProfilePicture"
                                     ImageSource="{Binding SelectedPlayer.ProfilePictureUrl}"
                                     Style="{StaticResource CachedImage_ProfileView}"
@@ -64,7 +64,16 @@
                 <Label Text="{Binding SelectedPlayer.Age}" Style="{StaticResource Label_ProfileViewAge}" />
             </StackLayout>
 
-            <Frame Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="10"
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ProfileMessage}"
+                   Style="{StaticResource Label_ProfileMessage}" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsDesktop}" Value="true">
+                            <Setter Property="FontSize" Value="20" />
+                            <Setter Property="Margin" Value="100,0,100,0" />
+                        </DataTrigger>
+                    </Label.Triggers>
+            </Label>
+            <!--<Frame Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="10"
                        BackgroundColor="#FCE4D1" Margin="15,0,15,0" HorizontalOptions="Center">
                 <Frame.Triggers>
                     <DataTrigger TargetType="Frame" Binding="{Binding IsDesktop}" Value="true">
@@ -78,7 +87,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-            </Frame>
+            </Frame>-->
             <CollectionView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Players}" SelectionMode="None"
                                 ItemsLayout="HorizontalList" IsVisible="{Binding IsDesktop, Converter={StaticResource InvertedBoolConverter}}">
                 <CollectionView.HeaderTemplate>

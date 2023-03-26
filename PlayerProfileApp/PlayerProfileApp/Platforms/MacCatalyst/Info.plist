@@ -27,6 +27,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleDisplayName</key>
-    <string>Player Profile App</string>
+	<string>Meet Your Friends Here</string>
 </dict>
 </plist>
